@@ -1,0 +1,151 @@
+
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6"><h1>Employee Managment</h1></div>
+    <div class="col-md-3"></div>
+</div>
+
+<br/><br/><br/>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+        <form style="width: 100%;"  [formGroup]="employeeFormGroup">
+    
+            <div class="form-group row">
+                <label for="inputDepartment" class="col-md-3 col-form-label">Department *</label>
+                <div class="col-md-6">
+                    <select id="inputDepartment" class="form-control" required formControlName="department"   >
+                      <option *ngFor="let c of departmentList" [ngValue]="c" >{{ c.name }}</option>
+                    </select>
+                    <div *ngIf="employeeFormGroup.controls.department.invalid">
+                      <span *ngIf="employeeFormGroup.controls.department.errors.required" class="error-message">Department required.</span>
+                    </div>
+                </div>
+              </div>
+               
+            <div class="form-group row">
+              <label for="inputemployee" class="col-md-3 col-form-label"> First Name *</label>
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="inputemployee" formControlName="firstName" required>
+                <div *ngIf="employeeFormGroup.controls.firstName.invalid">
+                  <span *ngIf="employeeFormGroup.controls.firstName.errors.required" class="error-message">First Name required .</span>
+                </div>
+              </div>
+            </div>
+
+               
+            <div class="form-group row">
+                <label for="inputemployee" class="col-md-3 col-form-label"> Last Name *</label>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" id="inputemployee" formControlName="lastName" required>
+                  <div *ngIf="employeeFormGroup.controls.lastName.invalid">
+                    <span *ngIf="employeeFormGroup.controls.lastName.errors.required" class="error-message">Last Name required .</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="inputemployee" class="col-md-3 col-form-label"> Email *</label>
+                <div class="col-md-6">
+                    <input type="email"  class="form-control" id="inputEmail" placeholder="Email"  formControlName="email" required>
+                    <div *ngIf="employeeFormGroup.controls.email.invalid">
+                        <span *ngIf="employeeFormGroup.controls.email.errors.required"  class="error-message">Email required.</span> 
+                        <span *ngIf="employeeFormGroup.controls.email.errors.pattern" class="error-message">Invaild Email address.</span>
+                     </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="inputemployee" class="col-md-3 col-form-label"> Phone *</label>
+                <div class="col-md-6">
+                    <input type="text"  class="form-control" id="inputPhone" placeholder="Phone"  formControlName="phone" required>
+                    <div *ngIf="employeeFormGroup.controls.phone.invalid">
+                        <span *ngIf="employeeFormGroup.controls.phone.errors.required"  class="error-message">Phone required.</span> 
+                        <span *ngIf="employeeFormGroup.controls.phone.errors.pattern" class="error-message">Invaild phone number.</span>
+                     </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="inputemployee" class="col-md-3 col-form-label"> Salary *</label>
+                <div class="col-md-6">
+                    <input type="number"  class="form-control" id="inputPhone" placeholder="Salary"  formControlName="salary" required>
+                    <div *ngIf="employeeFormGroup.controls.salary.invalid">
+                        <span *ngIf="employeeFormGroup.controls.salary.errors.required"  class="error-message">Salary required.</span> 
+                     </div>
+                </div>
+              </div>
+  
+            
+            <div class="form-group row">
+              <label for="inputinputconfirmpsw" class="col-md-3 col-form-label">Address *</label>
+              <div class="col-md-6">
+                <textarea   class="form-control" id="inputaddress" formControlName="address" rows="3" required ></textarea>
+                <div *ngIf="employeeFormGroup.controls.address.invalid">
+                 <span *ngIf="employeeFormGroup.controls.address.errors.required" class="error-message">Address  required .</span>
+                </div>
+              </div>
+            </div>
+          
+            <div class="form-group row">
+              <div class="col-md-3"></div>
+              <div class="col-md-6">
+                 <span *ngIf="errormessage" class="error-message">invaild save ,try again </span>
+                 <span *ngIf="successmessage" class="message">successfully insert employee</span>
+      
+              </div>
+            </div>
+            
+  
+            <div class="form-group row">
+              <div class="col-md-3"></div>
+              <div class="col-md-1">
+                 <button aria-label="Save" type="button" (click)="saveClick()" >Save</button>
+              </div>
+              <div class="col-md-1">
+                <button aria-label="Save" type="button" (click)="clearClick()" >Clear</button>
+             </div>
+            </div>
+  
+  
+        </form>
+    </div>
+    <div class="col-md-6">
+      <table class="table table">
+        <thead>
+          <tr>
+            <th scope="col">Department</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email </th>
+            <th scope="col">Phone  </th>
+            <th scope="col">Salary  </th>
+            <th scope="col">Address   </th>
+            <th scope="col">   </th>
+            <th scope="col">   </th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let employee of employeeList">
+          <tr>
+           
+            <td>{{employee.departmentName}}</td>
+            <td>{{employee.firstName}}</td>
+            <td>{{employee.lastName}}</td>
+            <td>{{employee.email}}</td>
+            <td>{{employee.phone}}</td>
+            <td>{{employee.salary}}</td>
+            <td>{{employee.address}}</td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="editEmployeeClick(employee)">Edit</button>
+            </td>
+            <td> <button type="button" class="btn btn-secondary" (click)="deleteEmployeeClick(employee.id)" >Delete</button></td>
+          </tr>
+         
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-1"></div>
+</div>
