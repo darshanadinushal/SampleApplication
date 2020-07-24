@@ -1,9 +1,10 @@
 # SampleApplication
 
+```
 Microsoft.EntityFrameworkCore
 Microsoft.EntityFrameworkCore.SqlServer
 Microsoft.EntityFrameworkCore.Tools
-
+```
 
 DataBase First 
 PM  >  Scaffold-DbContext "Data Source=DESKTOP-U67P0MO;Initial Catalog=Upworkdb;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Service/DBModel
